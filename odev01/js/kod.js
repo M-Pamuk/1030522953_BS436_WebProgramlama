@@ -66,7 +66,7 @@ const selectCard = (card) => {
 }
 //Yanlış seçimde verilen mesaj
 const wrongMessage = () => {
-    document.getElementById("alanId").innerText = "Yanlış Seçim. Son bir hakkınız kaldı";
+    document.getElementById("alanId").innerText = "Yanlış Seçim. Tekrar deneyin.";
 
 }
 //Oyun sonu elementlerin düzenlenmesi gerçekleşiyor. 
