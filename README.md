@@ -1,3 +1,3 @@
-#Öğrenci Numarası: 1030522953
-#Öğrenci Adı: Mustafa Pamuk
-#Ders Adı: BS436 Web Programlama
+Öğrenci Numarası: 1030522953 <br />
+Öğrenci Adı: Mustafa Pamuk <br />
+Ders Adı: BS436 Web Programlama
