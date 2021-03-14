@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kediyi Bul</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="bundle.js"></script>
+</head>
+
+<body>
+    <h2>Kedi Bulmaca</h2>
+    <p>Bu oyunda kapalı kart içerisinde kediyi bulman gerekmektedir.İlk tercihte kediyi bulamazsan ikinci hak
+        tanınacaktır.</p>
+        <p style="font-style: italic;">İsterseniz Ayarlar ekranından kart sayısı ve hak sayısını belirleyebilirsiniz.</p></p>
+        <button id="btnSetting" onclick="Game.settings(this)">Ayarlar</button>
+    <div id="gameContainer">
+        <label style="display: block;">Skor:<span id="txtScore">100</span></label>
+        <label style="display:block">Kalan Hak:<span id="txtHak"></span></label>
+        <div id="cards">
+
+        </div>
+        <div class="mesaj">
+            <p id="alanId">Kedi kartını bulmak için kartın üzerine tıklamalısın.</p>
+            <p id="sonuc" style="display: none"></p>
+
+        </div>
+    </div>
+
+    <div id="settings" style="display: none;">
+        <form onsubmit="event.preventDefault();">
+        <div>
+        <span>Kart Sayısı:</span><input required min="2" max="5" onchange="Game.limit()" type="number" value="3" id="settingsCardCount"/>
+    </div>
+        <span>Tanınan Hak:</span><input onchange="Game.limit()" type="number" required min="1" max="5" value="2" id="settingsHak"/>
+        <p style="font-style: italic;">En fazla 5 karta izin verilmektedir.</p>
+        <button type="submit" style="display:block;margin-right: auto;margin-left:auto;margin-top:20px;" onclick="Game.setSettings()"  id="settingsHak">KAYDET VE BAŞLA</button>
+    </form>
+    </div>
+</body>
+
+</html>
