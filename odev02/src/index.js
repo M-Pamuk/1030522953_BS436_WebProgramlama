@@ -1,6 +1,6 @@
 //Tüm  sayfa yüklendikten sonra oyunu set ediyor.
 document.addEventListener("DOMContentLoaded", function () {
-  
+
     Game.newGame();
 
 });
@@ -10,6 +10,9 @@ let correctIndex;
 let cardCount;
 let choiceNumber;
 let reduceScore;
+let saveSetting = false;
+let lastChoiceNumber;
+let lastCardCount;
 
 
 //Oyun elementleri set ediliyor.
@@ -18,21 +21,22 @@ export const newGame = () => {
     document.getElementById("cards").innerHTML = "";
     correctIndex;
     //Kullanıcı ayarlardan belirlemediyse default değerler atanır.
-    if(choiceNumber==null){
+    if (!saveSetting) {
         cardCount = 3;
         choiceNumber = cardCount - 1;
+
     }
-    //daha önceki oyun varsa onun ayarları set edilir.
-    else{
-        cardCount = document.getElementById("settingsCardCount").value;
-        choiceNumber = document.getElementById("settingsHak").value;
+    //daha önceki kaydedilmiş oyun ayarı varsa  set edilir.
+    else {
+        cardCount = lastCardCount;
+        choiceNumber = lastChoiceNumber;
     }
-    
+
     //doğru kartın index i belirlenir.
     correctIndex = (Math.floor(Math.random() * cardCount));
     //yanlış seçimde düşülecek skor puanı
-    reduceScore=Number(100/choiceNumber);
-    
+    reduceScore = Number(100 / choiceNumber);
+
     //Başlangıc text leri set ediliyor.
     document.getElementById("alanId").innerText = "Kedi kartını bulmak için kartın üzerine tıklamalısın.";
     document.getElementById("txtScore").innerText = "100";
@@ -41,8 +45,8 @@ export const newGame = () => {
     //belirlenen kart sayısı kadar kart oluşturuyor.
     createCard(cardCount);
     //Başlangıçta ekranların görünümleri ayarlanır.
-    document.getElementById("settings").style.display="none";
-    document.getElementById("gameContainer").style.display="block";
+    document.getElementById("settings").style.display = "none";
+    document.getElementById("gameContainer").style.display = "block";
 }
 
 //Kart tıklanan kartın doğru olup olmadığı kontrolleri yapılarak src ve score düzenlemesi 
@@ -58,7 +62,7 @@ export const selectCard = (card) => {
     //yanlış ise köpek set edilir ,score düzenlenir. Hak bitmiş ise oyun sonuna gönderilir.
     else {
         card.setAttribute("src", "img/kopek.png");
-        document.getElementById("txtScore").innerText = Number(Number(document.getElementById("txtScore").innerText) -reduceScore ).toFixed(2);
+        document.getElementById("txtScore").innerText = Number(Number(document.getElementById("txtScore").innerText) - reduceScore).toFixed(2);
         choiceNumber == 0 ? gameFinish(false) : wrongMessage();
 
     }
@@ -81,13 +85,13 @@ const gameFinish = (answer) => {
     //Tüm kartların onlick silinerek kullanıcı etkileşimi kesiliyor.
     cards.forEach(element => {
         element.removeAttribute("onclick");
-        if(element.id==="img"+correctIndex){
-            element.setAttribute("src","img/kedi.png")
+        if (element.id === "img" + correctIndex) {
+            element.setAttribute("src", "img/kedi.png")
         }
     });
     //Son seçimin doğru olması durumunda score düzenlemesi yapılıyor.
-    let elScore=document.getElementById("txtScore");
-    answer==false? elScore.innerText =0:elScore.innerText=elScore.innerHTML;
+    let elScore = document.getElementById("txtScore");
+    answer == false ? elScore.innerText = 0 : elScore.innerText = elScore.innerHTML;
 
 }
 //Kart sayısına göre DOM a kart ekleniyor
@@ -109,31 +113,33 @@ export const settings = (el) => {
     if (settingsPanel.style.display === "none") {
         gamePanel.style.display = "none";
         settingsPanel.style.display = "block";
-        el.innerText="Kapat";
+        el.innerText = "Kapat";
     }
     else {
         settingsPanel.style.display = "none";
         gamePanel.style.display = "block";
-        el.innerText="Ayarlar";
+        el.innerText = "Ayarlar";
+        
     }
 }
 //Girilen ayarları global değişkenlere ataması yapılıyor.
-export const setSettings=()=>{
-    //ayarlar ekranındaki input değerleri alınıyor.
-    cardCount = document.getElementById("settingsCardCount").value;
-    choiceNumber = document.getElementById("settingsHak").value;
+export const setSettings = () => {
+    //ayarlar ekranındaki input değerleri alınıyor ve kayıt işlemi yapıldığını belirlemek için true yapılıyor.
+    lastCardCount = document.getElementById("settingsCardCount").value;
+    lastChoiceNumber = document.getElementById("settingsHak").value;
+    saveSetting = true;
     //Girilen ayarlara göre yeni oyun başlatılıyor.
     newGame()
 }
 //Kart sayısı ve tanınan hak validation yapılıyor.(Hak en fazla kartSayısı-1 olabilir.)
-export function limit() {
+export const limit = () => {
     var elCardCount = document.getElementById("settingsCardCount");
     var elHak = document.getElementById("settingsHak");
-	if(elHak.value>=elCardCount.value){
-        elHak.value=elCardCount.value-1;
+    if (elHak.value >= elCardCount.value) {
+        elHak.value = elCardCount.value - 1;
     }
 
-    
+
 }
 
 
