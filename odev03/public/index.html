@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kediyi Bul</title>
+    <link rel="stylesheet" href="css/style.css" />
+    
+</head>
+
+<body>
+    <div id="headinfo"></div>
+        
+    <div id="gameContainer">
+        
+        <div id="root"/>
+
+        
+        
+    </div>
+
+    <div id="settings" style="display: none;">
+        <form onsubmit="event.preventDefault();">
+        <div>
+        <span>Kart Sayısı:</span><input required min="2" max="5" onchange="Game.limit()" type="number" value="3" id="settingsCardCount"/>
+    </div>
+        <span>Tanınan Hak:</span><input onchange="Game.limit()" type="number" required min="1" max="5" value="2" id="settingsHak"/>
+        <p style="font-style: italic;">En fazla 5 karta izin verilmektedir.</p>
+        <button type="submit" style="display:block;margin-right: auto;margin-left:auto;margin-top:20px;" onclick="Game.setSettings()"  id="settingsHak">KAYDET VE BAŞLA</button>
+    </form>
+    </div>
+    <script src="bundle.js"></script>
+</body>
+
+</html>
