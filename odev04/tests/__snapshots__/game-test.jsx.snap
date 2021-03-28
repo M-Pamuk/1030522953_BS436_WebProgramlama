@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render correctly 1`] = `
+<div>
+  <div>
+    <label
+      style={
+        Object {
+          "display": "block",
+        }
+      }
+    >
+      Skor:
+      <span
+        id="txtScore"
+      >
+        100
+      </span>
+    </label>
+    <label
+      style={
+        Object {
+          "display": "block",
+        }
+      }
+    >
+      Kalan Hak:
+      <span
+        id="txtHak"
+      />
+      2
+    </label>
+  </div>
+  <img
+    className="kart"
+    id="img0"
+    onClick={[Function]}
+    src="img/question.png"
+  />
+  <img
+    className="kart"
+    id="img1"
+    onClick={[Function]}
+    src="img/question.png"
+  />
+  <img
+    className="kart"
+    id="img2"
+    onClick={[Function]}
+    src="img/question.png"
+  />
+  <div
+    className="mesaj"
+  >
+    <p
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "Kediyi bulabilmek için kartların üzerine tıklamalısınız.",
+        }
+      }
+      onClick={null}
+    />
+  </div>
+</div>
+`;
